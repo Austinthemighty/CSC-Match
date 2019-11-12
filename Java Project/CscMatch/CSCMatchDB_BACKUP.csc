@@ -63,8 +63,3 @@
     </interests>
   </UUID>
 </userList>
-<interestsList>
-	<intrest>
-	
-	</interest>
-</interestsList>
