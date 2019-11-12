@@ -14,20 +14,45 @@ import java.util.Scanner;
  * Date: Oct 23, 2019
  * Course and Section Number:  CSC205AB, 12189
  * Program Name:  main.java
- * Program Description:  
+ * Program Description:
  *
  */
 
+@SuppressWarnings("unused")
 public class cscMatch {
-
+	
+//	public static membersList<member> users;
+//	
+//	public cscMatch() {
+//		users = new membersList<member>();
+//	}
+//	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Path filePath = Paths.get("../cscMatch.csc");
-		
-		
-		file.save(filePath);
-	}
+	file MatchDB = new file();
+	MatchDB.filePath = Paths.get("CSCMatchD.csc");
+	
+//	try {
+//		file.load(MatchDB.filePath);
+////		System.out.print(file.load(MatchDB.filePath));
+//	} catch (IOException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
+//	System.out.print(users);
+	
+//		System.out.println(file)
+		//  Balance tester = new Balance();
 
+		// file.save(filePath);
+//	
+		try{
+			file.save(MatchDB.filePath);
+		}
+		catch(IOException e) {
+		
+		}
+	}
 }
