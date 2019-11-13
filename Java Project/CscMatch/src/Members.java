@@ -23,5 +23,9 @@ public class Members {
 		}
 		return string;
 	}
-	
+	public int size() {
+		
+		return members.size();
+		
+	}
 }

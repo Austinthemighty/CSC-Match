@@ -21,38 +21,38 @@ import java.util.Scanner;
 @SuppressWarnings("unused")
 public class cscMatch {
 	
-//	public static membersList<member> users;
-//	
-//	public cscMatch() {
-//		users = new membersList<member>();
-//	}
-//	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-	file MatchDB = new file();
-	MatchDB.filePath = Paths.get("CSCMatchD.csc");
 	
-//	try {
-//		file.load(MatchDB.filePath);
-////		System.out.print(file.load(MatchDB.filePath));
-//	} catch (IOException e) {
-//		// TODO Auto-generated catch block
-//		e.printStackTrace();
-//	}
-//	System.out.print(users);
 	
-//		System.out.println(file)
-		//  Balance tester = new Balance();
-
-		// file.save(filePath);
-//	
-		try{
-			file.save(MatchDB.filePath);
-		}
-		catch(IOException e) {
+	
+	public static Members MembersList = new Members();
+	
+	public static void main(String[] args) throws IOException {
 		
-		}
+		
+//		Member temp = new Member();
+//		temp.name = "austin";
+//		MembersList.addMember(temp);
+		
+		
+		file MatchDB = new file();
+		MatchDB.filePath = Paths.get("CSCMatchDB.csc");
+		file SaveDB = new file();
+		SaveDB.filePath = Paths.get("CSCMatchDB_save.csc");
+		
+		file.load(MatchDB.filePath);
+		
+		file.save(SaveDB.filePath);
+//		file.addUser();
+//		try{
+//			file.load(MatchDB.filePath);
+//			
+//		}
+//		catch(IOException e) {
+//			System.out.println(e);
+//		}
+		
+		
+//		System.out.println(MembersList.size());
+//		System.out.println(MembersList.toString());
 	}
 }

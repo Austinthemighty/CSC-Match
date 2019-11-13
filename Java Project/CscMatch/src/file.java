@@ -50,60 +50,70 @@ public class file {
 
 		for(int line = 0; line<codes.length; line++) {
 			String code = codes[line].toString();
-			//			System.out.println(line);
-			//			System.out.println(codes[line]);
+//			System.out.println(code);
+			//System.out.println(codes[line]);
+//			System.out.println(line);
 
 			while(!inUsersList && !inInterestsList) {
-				if(code.contains("<usersList>")) {
+				if(code.contains("<userList")) {
 					inUsersList = true;
-					
+//					System.out.println(inUsersList);
+
 				}
-				if(code.contains("<interestsList>")) {
+				else if(code.contains("<interestsList")) {
 					inInterestsList = true;
+				}
+				else {
+					break;
 				}
 			}
 
+
+/* ------------------------------ Users List ------------------------------*/
 			while(inUsersList) {
+//				System.out.println("inInterestList");
+				
 				if(code.contains("</userList>")) {
 					inUsersList = false;
+					
 				}
 				else if(code.contains("<UUID id=")) {																		//Find new user
 					//create a new user
-
+					
 					UUID = Integer.parseInt(code.substring(code.indexOf("id=")+4, code.indexOf(">")-1));				//grab the users uuid
-					System.out.println("UUID: " +UUID);
+//					System.out.println("UUID: " +UUID);
 
 				}
 				else if(code.contains("</UUID>")) {																		//close the new user
-					//save all to the new user
-					System.out.println("end users");
-					//				newMember(UUID, name, year);
-					//				Object temp = new Object();
-					//				temp.UUID = UUID;
-					//				temp.name = name;
-					//				temp.year = year;
+					//save all the users data to the users to the new user
+//					System.out.println("end users");
+					Member temp = new Member();
+					
 
-					//				System.out.println(temp);
-					//				users.addMember(temp);
-					//				System.out.println(users);
+					temp.uuid = UUID;
+					temp.name = name;
+					temp.year = year;
+//					temp.interests = 
+					addUser(temp);
 
 				}
 				else if(code.contains("<user>") && code.contains("</user>")) {											//get the users name
 					name = code.substring((code.indexOf("<user>")+6), code.indexOf("</user>"));
-					System.out.println("Name: "+ name);
+//					System.out.println("Name: "+ name);
 				}
 
 				else if(code.contains("<year>") && code.contains("</year>")) {											//get the year of the user
 					year = Integer.parseInt(code.substring((code.indexOf("<year>")+6), code.indexOf("</year>")));
-					System.out.println("Year: "+ year);
+//					System.out.println("Year: "+ year);
 				}
 
 				else if(code.contains("<interests")) {																	//get the users interest
 					//create new interest list for the member
-					System.out.println("new interests list");
+//					System.out.println("new interests list");
 				}
 				else if(code.contains("</interests>")) {
 					//append the interest to the interest list
+					
 				}
 				else if(code.contains("<interest>")) {
 					//create new interest node
@@ -114,25 +124,43 @@ public class file {
 				else if(code.contains("<name>") && code.contains("</name>")) {
 					//get name and add it to the interest node
 					interestName = code.substring((code.indexOf("<name>")+6), code.indexOf("</name>"));
-					System.out.println("Interest name: "+ interestName);
+//					System.out.println("Interest name: "+ interestName);
 
 				}
 				else if(code.contains("<rating>")&& code.contains("</rating>")) {
 					//get the users rating for that interest and add it to the interest node
 					interestRating = Integer.parseInt(code.substring((code.indexOf("<rating>")+8), code.indexOf("</rating>")));
-					System.out.println("Interest rating: "+ interestRating);
+//					System.out.println("Interest rating: "+ interestRating);
 				}
 
 
-
+				break;
 			}
+			
+			
+/* ------------------------------ Users List ------------------------------*/
+			
 			while(inInterestsList) {
+//				System.out.println("inInterestList");
+				if(code.contains("</interestsList>")) {
 				
+				}
+				else if(code.contains("<interests>")&& code.contains("</interests>")) {
+					
+				}
+				
+				break;
 			}
+			
+			
 		}
-
+//		System.out.println(4);
 		return true;
 	}
+	
+	
+	
+/* --------------------------------END LOAD-----------------------------------*/
 
 	public static Object save(Path path) throws IOException {
 		if(Files.exists(path)) {
@@ -144,12 +172,25 @@ public class file {
 			catch (IOException e){
 				System.out.print(e);
 			}
-			//			String INTRO = "<?xml version=\"1.0\" encoding=\"UTF-8\"?> <!-- Valid DB file -->\n";
-			//			Files.createFile(path);
-			//			Files.write(path, INTRO.getBytes(StandardCharsets.ISO_8859_1), StandardOpenOption.APPEND);
+			
 		}
 		else {
-			newFile(path);
+			try {
+				newFile(path);
+			}
+			catch( IOException e)
+			{
+				System.out.print(e);
+			}
+		}
+		
+		String INTRO = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+		Files.write(path, INTRO.getBytes(StandardCharsets.ISO_8859_1), StandardOpenOption.APPEND);
+		
+		for(int i = 0; i > cscMatch.MembersList.size(); i++) {
+			System.out.println(i);
+//			cscMatch.MembersList.getMember(i);
+			
 		}
 
 		return true;
@@ -172,6 +213,10 @@ public class file {
 		String INTRO = "<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?> <!-- Valid DB file -->\\n";
 		Files.createFile(path);
 		Files.write(path, INTRO.getBytes(StandardCharsets.ISO_8859_1), StandardOpenOption.APPEND);
+	}
+	public static void addUser(Member m) {
+		cscMatch.MembersList.addMember(m);
+		System.out.println("added Member");
 	}
 
 }
