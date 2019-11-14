@@ -21,10 +21,9 @@ public class OrderedLinkedList<T> extends LinkedList<T> implements OrderedListAD
 			c = comparableElement.compareTo(n);
 		}
 		
-		if(c == 0) {
-			super.set(i, m);
+		if(c == 0) 
 			equal = true;
-		}else if(c == -1)
+		else if(c == -1)
 			super.add(i, m);
 		else if(c == 1)
 			this.addLast(m);

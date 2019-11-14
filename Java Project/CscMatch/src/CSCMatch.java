@@ -1,7 +1,7 @@
 import java.util.Iterator;
 import java.util.Scanner;
 
-public class MemberTest {
+public class CSCMatch {
 	
 	private static OrderedLinkedList<Interest> interests;
 	private static MembersList members;
