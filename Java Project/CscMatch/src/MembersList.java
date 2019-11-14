@@ -16,8 +16,26 @@ public class MembersList extends LinkedList<Member> implements Serializable {
 		this.remove(m);
 	}
 	
+	public Member get(String n) {
+		//receives member using name
+		boolean found = false;
+		Member m = null;
+		Iterator<Member> itr = this.iterator();
+		while(itr.hasNext() && !found) {
+			m = itr.next();
+			found = m.getName().equalsIgnoreCase(n) ? true : false;
+		}
+		
+		if(found)
+			return m;
+		else
+			return null;
+		
+		
+	}
+	
 	public String toString() {
-		String string = "\n-- Members --\n";
+		String string = "-- Members --\n";
 		Iterator<Member> itr = this.iterator();
 		while(itr.hasNext()) {
 			Member n = itr.next();

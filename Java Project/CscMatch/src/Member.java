@@ -25,11 +25,9 @@ public class Member implements Comparable, Serializable {
 		return year;
 	}
 	
-	public void addInterest(String n, int l) {
-		Interest temp = new Interest(n);
-		UserInterest tempUserInterest = new UserInterest(MemberTest/*Member Test gets replaced with main() class*/.newInterest(temp), l);
+	public void addInterest(Interest i, int l) {
+		UserInterest tempUserInterest = new UserInterest(i, l);
 		userInterests.add(tempUserInterest);
-		
 	}
 	
 	public void addMatch(Match m) {
