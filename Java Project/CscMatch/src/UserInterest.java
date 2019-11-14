@@ -30,7 +30,7 @@ public class UserInterest implements Comparable, Serializable {
 	}
 	
 	public String toString() {
-		return interest.getName() + ": " + this.getLevel();
+		return interest.toString() + ": " + this.getLevel();
 	}
 	
 }

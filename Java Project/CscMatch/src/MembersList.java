@@ -2,29 +2,27 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.io.Serializable;
 
-public class MembersList implements Serializable {
-	
-	private LinkedList<Member> membersList;
+public class MembersList extends LinkedList<Member> implements Serializable {
 	
 	public MembersList() {
-		membersList = new LinkedList<Member>();
+		super();
 	}
 	
 	public void addMember(Member m) {
-		membersList.add(m);
+		this.add(m);
 	}
 	
 	public void removeMember(Member m) {
-		membersList.remove(m);
+		this.remove(m);
 	}
 	
 	public String toString() {
-		String string = "";
-		Iterator<Member> itr = membersList.iterator();
+		String string = "\n-- Members --\n";
+		Iterator<Member> itr = this.iterator();
 		while(itr.hasNext()) {
 			Member n = itr.next();
-			string += n.getName() + ": " + n.getYear();
-			string += itr.hasNext() ? "; " : "";
+			string += n.getName() + ", Year " + n.getYear();
+			string += itr.hasNext() ? "\n" : "\n-------------\n";
 		}
 		return string;
 	}

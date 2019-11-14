@@ -14,6 +14,7 @@ public class Member implements Comparable, Serializable {
 		name = n;
 		year = y;
 		userInterests = new OrderedLinkedList<UserInterest>();
+		userMatches = new OrderedLinkedList<Match>();
 	}
 	
 	public String getName() {
@@ -29,6 +30,10 @@ public class Member implements Comparable, Serializable {
 		UserInterest tempUserInterest = new UserInterest(MemberTest/*Member Test gets replaced with main() class*/.newInterest(temp), l);
 		userInterests.add(tempUserInterest);
 		
+	}
+	
+	public void addMatch(Match m) {
+		userMatches.add(m);
 	}
 	
 	public int compareTo(Object in) {
@@ -52,7 +57,29 @@ public class Member implements Comparable, Serializable {
 			intMatch = false;
 		
 		}
+		Match out = new Match(m, score);
+		addMatch(out);
 		return score;
+	}
+	
+	public String toString() {
+		
+		String string = "Member ";
+		string += this.getName() + ", Year " + this.getYear() + "\n";
+		
+		string += userInterests.size() > 0 ? "-- Interests --\n" : "\n-- No Interests --\n\n";
+		for(UserInterest i : userInterests) {
+			string += i.toString() + "\n";
+		}
+		
+		string += userMatches.size() > 0 ? "\n-- Matches --\n" : "\n-- No Match, add other members--\n";
+		
+		for(Match m : userMatches) {
+			string += m.toString() + "\n";
+		}
+		
+		return string;
+		
 	}
 	
 }

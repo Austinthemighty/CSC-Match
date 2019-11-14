@@ -1,5 +1,5 @@
 
-public class Match {
+public class Match implements Comparable {
 
 	private Member match;
 	private int score;
@@ -18,7 +18,18 @@ public class Match {
 	}
 	
 	public String toString() {
-		return match.getName() + ": " + score;
+		return match.getName() + ", Year " + match.getYear() + ": " + score;
+	}
+	
+	public int compareTo(Object in) {
+		Match m = (Match) in;
+		
+		int c = 1;
+		
+		if(this.getScore() > m.getScore())
+			c = -1;
+		
+		return c;
 	}
 	
 }
