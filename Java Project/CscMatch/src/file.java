@@ -162,6 +162,9 @@ public class file {
 	
 /* --------------------------------END LOAD-----------------------------------*/
 
+	
+	
+/* --------------------------------- SAVE ------------------------------------*/
 	public static Object save(Path path) throws IOException {
 		if(Files.exists(path)) {
 
@@ -184,15 +187,25 @@ public class file {
 			}
 		}
 		
-		String INTRO = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-		Files.write(path, INTRO.getBytes(StandardCharsets.ISO_8859_1), StandardOpenOption.APPEND);
+//		String INTRO = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+//		Files.write(path, INTRO.getBytes(StandardCharsets.ISO_8859_1), StandardOpenOption.APPEND);
+		String filling = "<userList users=\""+ cscMatch.MembersList.size() + "\">";
+		writeToFile(filling, path);
 		
-		for(int i = 0; i > cscMatch.MembersList.size(); i++) {
-			System.out.println(i);
-//			cscMatch.MembersList.getMember(i);
-			
-		}
-
+//		for(int i = 0; i < cscMatch.MembersList.size(); i++) {
+//			System.out.println(i);
+////			cscMatch.MembersList.getMember(i);
+//			writeToFile("<UUID id=\""+cscMatch.MembersList.getUser(i).uuid +"\">\n <user>"+
+//							cscMatch.MembersList.getUser(i).name + "</user>\n <year>" +
+//							cscMatch.MembersList.getUser(i).year + "</year>\n"
+//					,path);
+//			for(int j = 0; i < cscMatch.MembersList.getUser(i).interestsList.length(); i++){
+//			}
+//					)
+//			
+//			
+//		}
+		System.out.println(filling);
 		return true;
 
 	}
@@ -210,13 +223,16 @@ public class file {
 	private static void newFile(Path path) throws IOException{
 		//TODO test to make sure that after the "." there file extension is a ".csc" file else make it a csc file or throw error
 		System.out.println("Createing New file");
-		String INTRO = "<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?> <!-- Valid DB file -->\\n";
+		String INTRO = "<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?> \n";
 		Files.createFile(path);
 		Files.write(path, INTRO.getBytes(StandardCharsets.ISO_8859_1), StandardOpenOption.APPEND);
 	}
 	public static void addUser(Member m) {
 		cscMatch.MembersList.addMember(m);
-		System.out.println("added Member");
+//		System.out.println("added Member");
+	}
+	private static void writeToFile(String text, Path path) throws IOException {
+		Files.write(path, text.getBytes(StandardCharsets.ISO_8859_1), StandardOpenOption.APPEND);
 	}
 
 }

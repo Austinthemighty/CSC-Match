@@ -24,7 +24,7 @@ public class cscMatch {
 	
 	
 	
-	public static Members MembersList = new Members();
+	public static MembersList MembersList = new MembersList();
 	
 	public static void main(String[] args) throws IOException {
 		
